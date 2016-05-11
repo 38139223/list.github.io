@@ -287,22 +287,7 @@
             <h3 id="CodeIgniter初见"><a href="#CodeIgniter初见" class="headerlink" title="CodeIgniter初见"></a>CodeIgniter初见</h3><pre><code>Q：如何安装？
 A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
 浏览器打开http://localhost/就可以了。
-</code></pre><h4 id="CodeIgniter目录结构"><a href="#CodeIgniter目录结构" class="headerlink" title="CodeIgniter目录结构"></a>CodeIgniter目录结构</h4><p><code>application
-   -cache 缓存
-   -config 配置文件
-   -controllers 控制器
-   -core 核心库扩展目录
-   -errors 错误
-   -helpers自定义辅助函数文件夹
-   -hooks钩子文件目录
-   -language 本地语言包
-   -libraries自定义库文件，类文件
-   -logs 日志
-   -models 模型
-   -third_party 引用第三方包
-   -views 视图
-system
-index.php</code></p>
+</code></pre><h4 id="CodeIgniter目录结构"><a href="#CodeIgniter目录结构" class="headerlink" title="CodeIgniter目录结构"></a>CodeIgniter目录结构</h4><p><code>application</code>   -cache 缓存<br><code>-config 配置文件</code>   -controllers 控制器<br><code>-core 核心库扩展目录</code>   -errors 错误<br><code>-helpers自定义辅助函数文件夹</code>   -hooks钩子文件目录<br><code>-language 本地语言包</code>   -libraries自定义库文件，类文件<br><code>-logs 日志</code>   -models 模型<br><code>-third_party 引用第三方包</code>   -views 视图<br><code>system</code>index.php</p>
 <ul>
 <li><p>1、controllers控制器<br>控制器就是一个类文件,须继承CI_Controller.<br>命名规范：<br>– A、类名的首字母应该大写。多个词之间用下划线连接。<br>– B、类中的方法名称小写，多个词之间下划线连接。<br>– C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php<br>`<br>  class China extends CI_controller{<br>  public function beijing(){</p>
 <pre><code> echo &quot;Welcome to beijing!&quot;;

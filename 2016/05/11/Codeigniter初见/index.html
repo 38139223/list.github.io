@@ -85,21 +85,39 @@
 
 
 <meta name="description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，浏览器打开http://localhost/就可以了。
-####CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -er">
+A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
+浏览器打开http://localhost/就可以了。
+CodeIgniter目录结构application
+   -cache 缓存
+   -config 配置文件
+   -controllers 控制器
+   -core 核心库扩展目录
+   -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeigniter初见">
 <meta property="og:url" content="http://b-gg.com/2016/05/11/Codeigniter初见/index.html">
 <meta property="og:site_name" content="萨日台">
 <meta property="og:description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，浏览器打开http://localhost/就可以了。
-####CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -er">
-<meta property="og:updated_time" content="2016-05-11T09:26:36.787Z">
+A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
+浏览器打开http://localhost/就可以了。
+CodeIgniter目录结构application
+   -cache 缓存
+   -config 配置文件
+   -controllers 控制器
+   -core 核心库扩展目录
+   -">
+<meta property="og:updated_time" content="2016-05-11T09:32:54.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeigniter初见">
 <meta name="twitter:description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，浏览器打开http://localhost/就可以了。
-####CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -er">
+A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
+浏览器打开http://localhost/就可以了。
+CodeIgniter目录结构application
+   -cache 缓存
+   -config 配置文件
+   -controllers 控制器
+   -core 核心库扩展目录
+   -">
 
 
 
@@ -285,13 +303,26 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
 
       
         <h3 id="CodeIgniter初见"><a href="#CodeIgniter初见" class="headerlink" title="CodeIgniter初见"></a>CodeIgniter初见</h3><pre><code>Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，浏览器打开http://localhost/就可以了。
-</code></pre><p>####CodeIgniter目录结构<br>application<br>   -cache 缓存<br>   -config 配置文件<br>   -controllers 控制器<br>   -core 核心库扩展目录<br>   -errors 错误<br>   -helpers自定义辅助函数文件夹<br>   -hooks钩子文件目录<br>   -language 本地语言包<br>   -libraries自定义库文件，类文件<br>   -logs 日志<br>   -models 模型<br>   -third_party 引用第三方包<br>   -views 视图<br>system<br>index.php</p>
+A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
+浏览器打开http://localhost/就可以了。
+</code></pre><h4 id="CodeIgniter目录结构"><a href="#CodeIgniter目录结构" class="headerlink" title="CodeIgniter目录结构"></a>CodeIgniter目录结构</h4><p><code>application
+   -cache 缓存
+   -config 配置文件
+   -controllers 控制器
+   -core 核心库扩展目录
+   -errors 错误
+   -helpers自定义辅助函数文件夹
+   -hooks钩子文件目录
+   -language 本地语言包
+   -libraries自定义库文件，类文件
+   -logs 日志
+   -models 模型
+   -third_party 引用第三方包
+   -views 视图
+system
+index.php</code></p>
 <ul>
-<li>1、controllers控制器<br>控制器就是一个类文件,须继承CI_Controller.<br>命名规范：</li>
-<li>A、类名的首字母应该大写。多个词之间用下划线连接。</li>
-<li>B、类中的方法名称小写，多个词之间下划线连接。</li>
-<li><p>C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php<br>`    class China extends CI_controller{<br>  public function beijing(){</p>
+<li><p>1、controllers控制器<br>控制器就是一个类文件,须继承CI_Controller.<br>命名规范：<br>– A、类名的首字母应该大写。多个词之间用下划线连接。<br>– B、类中的方法名称小写，多个词之间下划线连接。<br>– C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php<br>`<br>  class China extends CI_controller{<br>  public function beijing(){</p>
 <pre><code> echo &quot;Welcome to beijing!&quot;;
 }
 </code></pre><p>  }<br>`<br>URL规则-pathinfo规则，分隔符”/“<br><a href="http://b-gg.com/citest/index.php/china/beijing">http://b-gg.com/citest/index.php/china/beijing</a><br><a href="http://example.com/[controller-class]/[controller-method]/[arguments" target="_blank" rel="external">http://example.com/[controller-class]/[controller-method]/[arguments</a>]</p>
@@ -449,7 +480,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeIgniter初见"><span class="nav-number">1.</span> <span class="nav-text">CodeIgniter初见</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4、要点："><span class="nav-number">1.0.1.</span> <span class="nav-text">4、要点：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeIgniter初见"><span class="nav-number">1.</span> <span class="nav-text">CodeIgniter初见</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CodeIgniter目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">CodeIgniter目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4、要点："><span class="nav-number">1.1.1.</span> <span class="nav-text">4、要点：</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

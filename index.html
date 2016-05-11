@@ -305,18 +305,21 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
 <ul>
 <li>2、views视图<br>view常用来做模板，后缀可以是html、php。</li>
 <li><p>3、controllers调用views</p>
-<p> public function beijing(){<br> $this-&gt;load-&gt;view(‘beijing.html’);<br> }</p>
+<p>  public function beijing(){<br>  $this-&gt;load-&gt;view(‘beijing.html’);<br>  }</p>
 <p>简单地将views文件展示出来，实际上我们需要在controllers控制器中获取到数据，然后<br>分配到视图中展示。</p>
-<p> public function beijing(){<br> $data[‘title’] = ‘中国首都’;<br> $data[‘content’] = ‘北京是中华人民共和国的首都。’；<br> $this-&gt;load-&gt;view(‘beijing.html’ .$data);<br> }<br>相应地视图文件应该这么写：</p>
-</li>
-</ul>
-<blockquote>
-<p><html><br>   <body><br>    <h2>&lt;?php echo $title; ?&gt;</h2><br>    <p>&lt;?php echo $content; ?&gt;</p><br>   </body><br></html><br> 需要注意的是，输出直接使用$title,而不是$data[‘title’],这是因为框架extract函数将数组变量导入到当前的符号表，可以直接使用键名作为变量使用。</p>
+<p>  public function beijing(){<br>  $data[‘title’] = ‘中国首都’;<br>  $data[‘content’] = ‘北京是中华人民共和国的首都。’；<br>  $this-&gt;load-&gt;view(‘beijing.html’ .$data);<br>  }<br>相应地视图文件应该这么写：</p>
+<p>  <html></html></p>
+<pre><code>&lt;body&gt;
+ &lt;h2&gt;&lt;?php echo $title; ?&gt;&lt;/h2&gt;
+ &lt;p&gt;&lt;?php echo $content; ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+</code></pre><p>   <br>需要注意的是，输出直接使用$title,而不是$data[‘title’],这是因为框架extract函数将数组变量导入到当前的符号表，可以直接使用键名作为变量使用。</p>
 <h5 id="4、要点："><a href="#4、要点：" class="headerlink" title="4、要点："></a>4、要点：</h5><ul>
 <li>1、框架开发和二次开发的区别<br>CI是提供的是基础功能和项目结构，项目的功能需要你自己完成。<br>ecshop等开源项目的二次开发则是另一回事。</li>
 <li>2、MVC<br>M:model模型，操作数据库<br>V:view视图，展示数据。<br>C:controller控制器，接受请求-调用模型工作和获取数据，分配到视图展示。</li>
 </ul>
-</blockquote>
+</li>
+</ul>
 
           
         

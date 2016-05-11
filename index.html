@@ -294,14 +294,10 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
 <ul>
 <li>A、类名的首字母应该大写。多个词之间用下划线连接。</li>
 <li>B、类中的方法名称小写，多个词之间下划线连接。</li>
-<li><p>C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php</p>
-<p>  class China extends CI_controller{<br>  public function beijing(){</p>
-<pre><code> echo &quot;Welcome to beijing!&quot;;
+<li>C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php<br>  &lt;?php<br>  class China extends CI_controller{<br>  public function beijing(){<pre><code> echo &quot;Welcome to beijing!&quot;;
 }
-</code></pre><p>  }</p>
-</li>
+</code></pre>  }<br>  ?&gt;<br>URL规则-pathinfo规则，分隔符”/“<br><a href="http://b-gg.com/citest/index.php/china/beijing">http://b-gg.com/citest/index.php/china/beijing</a><br><a href="http://example.com/[controller-class]/[controller-method]/[arguments" target="_blank" rel="external">http://example.com/[controller-class]/[controller-method]/[arguments</a>]</li>
 </ul>
-<p>URL规则-pathinfo规则，分隔符”/“<br><a href="http://b-gg.com/citest/index.php/china/beijing">http://b-gg.com/citest/index.php/china/beijing</a><br><a href="http://example.com/[controller-class]/[controller-method]/[arguments" target="_blank" rel="external">http://example.com/[controller-class]/[controller-method]/[arguments</a>]</p>
 <ul>
 <li>2、views视图<br>view常用来做模板，后缀可以是html、php。</li>
 <li><p>3、controllers调用views</p>

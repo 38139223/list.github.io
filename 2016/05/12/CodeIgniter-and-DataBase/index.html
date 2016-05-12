@@ -84,25 +84,16 @@
 
 
 
-<meta name="description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
-浏览器打开http://localhost/就可以了。
-CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -error">
+<meta name="description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeigniter初见">
-<meta property="og:url" content="http://b-gg.com/2016/05/11/Codeigniter初见/index.html">
+<meta property="og:title" content="CodeIgniter and DataBase">
+<meta property="og:url" content="http://b-gg.com/2016/05/12/CodeIgniter-and-DataBase/index.html">
 <meta property="og:site_name" content="萨日台">
-<meta property="og:description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
-浏览器打开http://localhost/就可以了。
-CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -error">
-<meta property="og:updated_time" content="2016-05-11T11:00:12.909Z">
+<meta property="og:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
+<meta property="og:updated_time" content="2016-05-12T04:00:31.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Codeigniter初见">
-<meta name="twitter:description" content="CodeIgniter初见Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
-浏览器打开http://localhost/就可以了。
-CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -controllers 控制器   -core 核心库扩展目录   -error">
+<meta name="twitter:title" content="CodeIgniter and DataBase">
+<meta name="twitter:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
 
 
 
@@ -120,7 +111,7 @@ CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -con
   };
 </script>
 
-  <title> Codeigniter初见 | 萨日台 </title>
+  <title> CodeIgniter and DataBase | 萨日台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +231,7 @@ CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -con
             
             
               
-                Codeigniter初见
+                CodeIgniter and DataBase
               
             
           </h1>
@@ -252,8 +243,8 @@ CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -con
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-11T17:16:01+08:00" content="2016-05-11">
-              2016-05-11
+            <time itemprop="dateCreated" datetime="2016-05-12T11:32:25+08:00" content="2016-05-12">
+              2016-05-12
             </time>
           </span>
 
@@ -263,8 +254,8 @@ CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -con
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/11/Codeigniter初见/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/11/Codeigniter初见/" itemprop="commentsCount"></span>
+                <a href="/2016/05/12/CodeIgniter-and-DataBase/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/CodeIgniter-and-DataBase/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,42 +278,7 @@ CodeIgniter目录结构application   -cache 缓存   -config 配置文件   -con
       
 
       
-        <h3 id="CodeIgniter初见"><a href="#CodeIgniter初见" class="headerlink" title="CodeIgniter初见"></a>CodeIgniter初见</h3><pre><code>Q：如何安装？
-A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测试网站目录下，
-浏览器打开http://localhost/就可以了。
-</code></pre><h4 id="CodeIgniter目录结构"><a href="#CodeIgniter目录结构" class="headerlink" title="CodeIgniter目录结构"></a>CodeIgniter目录结构</h4><p>application<br>   -cache 缓存<br>   -config 配置文件<br>   -controllers 控制器<br>   -core 核心库扩展目录<br>   -errors 错误<br>   -helpers自定义辅助函数文件夹<br>   -hooks钩子文件目录<br>   -language 本地语言包<br>   -libraries自定义库文件，类文件<br>   -logs 日志<br>   -models 模型<br>   -third_party 引用第三方包<br>   -views 视图<br>system<br>index.php</p>
-<ul>
-<li>1、controllers控制器<br>控制器就是一个类文件,须继承CI_Controller.<br>命名规范：</li>
-</ul>
-<ul>
-<li>A、类名的首字母应该大写。多个词之间用下划线连接。</li>
-<li>B、类中的方法名称小写，多个词之间下划线连接。</li>
-<li><p>C、类文件名使用小写，文件名与类名保持一致。<br>Eg：china.php</p>
-<p>  &lt;?php<br>  class China extends CI_controller{<br>  public function beijing(){</p>
-<pre><code> echo &quot;Welcome to beijing!&quot;;
-}
-</code></pre><p>  }<br>  ?&gt;</p>
-</li>
-</ul>
-<p>URL规则-pathinfo规则，分隔符”/“<br><a href="http://b-gg.com/citest/index.php/china/beijing">http://b-gg.com/citest/index.php/china/beijing</a><br><a href="http://example.com/[controller-class]/[controller-method]/[arguments" target="_blank" rel="external">http://example.com/[controller-class]/[controller-method]/[arguments</a>]</p>
-<ul>
-<li>2、views视图<br>view常用来做模板，后缀可以是html、php。</li>
-<li><p>3、controllers调用views</p>
-<p>  public function beijing(){<br>  $this-&gt;load-&gt;view(‘beijing.html’);<br>  }</p>
-<p>简单地将views文件展示出来，实际上我们需要在controllers控制器中获取到数据，然后<br>分配到视图中展示。</p>
-<p>  public function beijing(){<br>  $data[‘title’] = ‘中国首都’;<br>  $data[‘content’] = ‘北京是中华人民共和国的首都。’；<br>  $this-&gt;load-&gt;view(‘beijing.html’ .$data);<br>  }<br>相应地视图文件应该这么写：</p>
-<p>  <html></html></p>
-<pre><code>&lt;body&gt;
- &lt;h2&gt;&lt;?php echo $title; ?&gt;&lt;/h2&gt;
- &lt;p&gt;&lt;?php echo $content; ?&gt;&lt;/p&gt;
-&lt;/body&gt;
-</code></pre><p>   <br>需要注意的是，输出直接使用$title,而不是$data[‘title’],这是因为框架extract函数将数组变量导入到当前的符号表，可以直接使用键名作为变量使用。</p>
-<h5 id="4、要点："><a href="#4、要点：" class="headerlink" title="4、要点："></a>4、要点：</h5><ul>
-<li>1、框架开发和二次开发的区别<br>CI是提供的是基础功能和项目结构，项目的功能需要你自己完成。<br>ecshop等开源项目的二次开发则是另一回事。</li>
-<li>2、MVC<br>M:model模型，操作数据库<br>V:view视图，展示数据。<br>C:controller控制器，接受请求-调用模型工作和获取数据，分配到视图展示。</li>
-</ul>
-</li>
-</ul>
+        <h3 id="CodeIgniter-数据库配置"><a href="#CodeIgniter-数据库配置" class="headerlink" title="CodeIgniter 数据库配置"></a>CodeIgniter 数据库配置</h3><p>无论是测试还是生产环境，你都需要一个配置文件&lt;默认位置application/config/database.php&gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。<br>    $db[‘default’] = array(<br>    ‘dsn’   =&gt; ‘’,<br>    ‘hostname’ =&gt; ‘localhost’,<br>    ‘username’ =&gt; ‘root’,<br>    ‘password’ =&gt; ‘’,<br>    ‘database’ =&gt; ‘database_name’,<br>    ‘dbdriver’ =&gt; ‘mysqli’,<br>    ‘dbprefix’ =&gt; ‘’,<br>    ‘pconnect’ =&gt; TRUE,<br>    ‘db_debug’ =&gt; TRUE,<br>    ‘cache_on’ =&gt; FALSE,<br>    ‘cachedir’ =&gt; ‘’,<br>    ‘char_set’ =&gt; ‘utf8’,<br>    ‘dbcollat’ =&gt; ‘utf8_general_ci’,<br>    ‘swap_pre’ =&gt; ‘’,<br>    ‘encrypt’ =&gt; FALSE,<br>    ‘compress’ =&gt; FALSE,<br>    ‘stricton’ =&gt; FALSE,<br>    ‘failover’ =&gt; array()<br>);</p>
 
       
     </div>
@@ -347,17 +303,13 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/09/如何正确地申请github-io的独立域名/" rel="next" title="如何正确地申请github.io的独立域名">
-                <i class="fa fa-chevron-left"></i> 如何正确地申请github.io的独立域名
+              <a href="/2016/05/11/Codeigniter初见/" rel="next" title="Codeigniter初见">
+                <i class="fa fa-chevron-left"></i> Codeigniter初见
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/12/CodeIgniter-and-DataBase/" rel="prev" title="CodeIgniter and DataBase">
-                CodeIgniter and DataBase <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -383,8 +335,8 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/11/Codeigniter初见/"
-           data-title="Codeigniter初见" data-url="http://b-gg.com/2016/05/11/Codeigniter初见/">
+      <div class="ds-thread" data-thread-key="2016/05/12/CodeIgniter-and-DataBase/"
+           data-title="CodeIgniter and DataBase" data-url="http://b-gg.com/2016/05/12/CodeIgniter-and-DataBase/">
       </div>
     
   </div>
@@ -461,7 +413,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeIgniter初见"><span class="nav-number">1.</span> <span class="nav-text">CodeIgniter初见</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CodeIgniter目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">CodeIgniter目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4、要点："><span class="nav-number">1.1.1.</span> <span class="nav-text">4、要点：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeIgniter-数据库配置"><span class="nav-number">1.</span> <span class="nav-text">CodeIgniter 数据库配置</span></a></li></ol></div>
             
           </div>
         </section>

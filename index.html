@@ -284,7 +284,27 @@
       
         
           
-            <h3 id="CodeIgniter-数据库配置"><a href="#CodeIgniter-数据库配置" class="headerlink" title="CodeIgniter 数据库配置"></a>CodeIgniter 数据库配置</h3><p>无论是测试还是生产环境，你都需要一个配置文件&lt;默认位置application/config/database.php&gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。<br>    $db[‘default’] = array(<br>    ‘dsn’   =&gt; ‘’,<br>    ‘hostname’ =&gt; ‘localhost’,<br>    ‘username’ =&gt; ‘root’,<br>    ‘password’ =&gt; ‘’,<br>    ‘database’ =&gt; ‘database_name’,<br>    ‘dbdriver’ =&gt; ‘mysqli’,<br>    ‘dbprefix’ =&gt; ‘’,<br>    ‘pconnect’ =&gt; TRUE,<br>    ‘db_debug’ =&gt; TRUE,<br>    ‘cache_on’ =&gt; FALSE,<br>    ‘cachedir’ =&gt; ‘’,<br>    ‘char_set’ =&gt; ‘utf8’,<br>    ‘dbcollat’ =&gt; ‘utf8_general_ci’,<br>    ‘swap_pre’ =&gt; ‘’,<br>    ‘encrypt’ =&gt; FALSE,<br>    ‘compress’ =&gt; FALSE,<br>    ‘stricton’ =&gt; FALSE,<br>    ‘failover’ =&gt; array()<br>);</p>
+            <h3 id="CodeIgniter-数据库配置"><a href="#CodeIgniter-数据库配置" class="headerlink" title="CodeIgniter 数据库配置"></a>CodeIgniter 数据库配置</h3><p>无论是测试还是生产环境，你都需要一个配置文件&lt;默认位置application/config/database.php&gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。</p>
+<pre><code>$db[&apos;default&apos;] = array(
+&apos;dsn&apos;   =&gt; &apos;&apos;,
+&apos;hostname&apos; =&gt; &apos;localhost&apos;,
+&apos;username&apos; =&gt; &apos;root&apos;,
+&apos;password&apos; =&gt; &apos;&apos;,
+&apos;database&apos; =&gt; &apos;database_name&apos;,
+&apos;dbdriver&apos; =&gt; &apos;mysqli&apos;,
+&apos;dbprefix&apos; =&gt; &apos;&apos;,
+&apos;pconnect&apos; =&gt; TRUE,
+&apos;db_debug&apos; =&gt; TRUE,
+&apos;cache_on&apos; =&gt; FALSE,
+&apos;cachedir&apos; =&gt; &apos;&apos;,
+&apos;char_set&apos; =&gt; &apos;utf8&apos;,
+&apos;dbcollat&apos; =&gt; &apos;utf8_general_ci&apos;,
+&apos;swap_pre&apos; =&gt; &apos;&apos;,
+&apos;encrypt&apos; =&gt; FALSE,
+&apos;compress&apos; =&gt; FALSE,
+&apos;stricton&apos; =&gt; FALSE,
+&apos;failover&apos; =&gt; array()
+</code></pre><p>);</p>
 
           
         

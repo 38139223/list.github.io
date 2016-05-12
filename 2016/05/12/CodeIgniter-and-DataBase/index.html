@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
+<meta name="description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。
+$db[&amp;apos;default&amp;apos;] = array(
+&amp;apos;dsn&amp;apos;   =&amp;gt; &amp;apos;&amp;apos;,
+&amp;apos;h">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CodeIgniter and DataBase">
 <meta property="og:url" content="http://b-gg.com/2016/05/12/CodeIgniter-and-DataBase/index.html">
 <meta property="og:site_name" content="萨日台">
-<meta property="og:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
-<meta property="og:updated_time" content="2016-05-12T04:00:31.098Z">
+<meta property="og:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。
+$db[&amp;apos;default&amp;apos;] = array(
+&amp;apos;dsn&amp;apos;   =&amp;gt; &amp;apos;&amp;apos;,
+&amp;apos;h">
+<meta property="og:updated_time" content="2016-05-12T04:07:10.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeIgniter and DataBase">
-<meta name="twitter:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。    $db[‘default’] = array(    ‘dsn’   =&amp;gt; ‘’,    ‘hostname’ =&amp;gt; ‘localhost’">
+<meta name="twitter:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。
+$db[&amp;apos;default&amp;apos;] = array(
+&amp;apos;dsn&amp;apos;   =&amp;gt; &amp;apos;&amp;apos;,
+&amp;apos;h">
 
 
 
@@ -278,7 +287,27 @@
       
 
       
-        <h3 id="CodeIgniter-数据库配置"><a href="#CodeIgniter-数据库配置" class="headerlink" title="CodeIgniter 数据库配置"></a>CodeIgniter 数据库配置</h3><p>无论是测试还是生产环境，你都需要一个配置文件&lt;默认位置application/config/database.php&gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。<br>    $db[‘default’] = array(<br>    ‘dsn’   =&gt; ‘’,<br>    ‘hostname’ =&gt; ‘localhost’,<br>    ‘username’ =&gt; ‘root’,<br>    ‘password’ =&gt; ‘’,<br>    ‘database’ =&gt; ‘database_name’,<br>    ‘dbdriver’ =&gt; ‘mysqli’,<br>    ‘dbprefix’ =&gt; ‘’,<br>    ‘pconnect’ =&gt; TRUE,<br>    ‘db_debug’ =&gt; TRUE,<br>    ‘cache_on’ =&gt; FALSE,<br>    ‘cachedir’ =&gt; ‘’,<br>    ‘char_set’ =&gt; ‘utf8’,<br>    ‘dbcollat’ =&gt; ‘utf8_general_ci’,<br>    ‘swap_pre’ =&gt; ‘’,<br>    ‘encrypt’ =&gt; FALSE,<br>    ‘compress’ =&gt; FALSE,<br>    ‘stricton’ =&gt; FALSE,<br>    ‘failover’ =&gt; array()<br>);</p>
+        <h3 id="CodeIgniter-数据库配置"><a href="#CodeIgniter-数据库配置" class="headerlink" title="CodeIgniter 数据库配置"></a>CodeIgniter 数据库配置</h3><p>无论是测试还是生产环境，你都需要一个配置文件&lt;默认位置application/config/database.php&gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。</p>
+<pre><code>$db[&apos;default&apos;] = array(
+&apos;dsn&apos;   =&gt; &apos;&apos;,
+&apos;hostname&apos; =&gt; &apos;localhost&apos;,
+&apos;username&apos; =&gt; &apos;root&apos;,
+&apos;password&apos; =&gt; &apos;&apos;,
+&apos;database&apos; =&gt; &apos;database_name&apos;,
+&apos;dbdriver&apos; =&gt; &apos;mysqli&apos;,
+&apos;dbprefix&apos; =&gt; &apos;&apos;,
+&apos;pconnect&apos; =&gt; TRUE,
+&apos;db_debug&apos; =&gt; TRUE,
+&apos;cache_on&apos; =&gt; FALSE,
+&apos;cachedir&apos; =&gt; &apos;&apos;,
+&apos;char_set&apos; =&gt; &apos;utf8&apos;,
+&apos;dbcollat&apos; =&gt; &apos;utf8_general_ci&apos;,
+&apos;swap_pre&apos; =&gt; &apos;&apos;,
+&apos;encrypt&apos; =&gt; FALSE,
+&apos;compress&apos; =&gt; FALSE,
+&apos;stricton&apos; =&gt; FALSE,
+&apos;failover&apos; =&gt; array()
+</code></pre><p>);</p>
 
       
     </div>

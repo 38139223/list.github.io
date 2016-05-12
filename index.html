@@ -233,6 +233,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/" itemprop="url">
+                  Shell遍历指定目录并只保留日期最近的10个文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T17:44:17+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>将文件所在目录列表存到一个数组</p>
+<pre><code>#!/bin/bash
+selfname=`basename $0`   #获得脚本自身文件名
+x=0         #数组索引初始
+for filename in *;
+do         #循环当前目录下的文件
+   if [ &quot;$selfname&quot; = &quot;$filename&quot; ];then
+      continue   #本文件跳过
+   else
+      array[$x]=$filename   #文件名给数组索引为x的元素
+      let &quot;x+=1&quot;      #改变索引指针，步长1
+   fi
+done
+echo ${array[@]}   #打印数组，以便检查程序运行情况
+echo $x
+</code></pre><p>遍历指定目录的子目录和文件，保留最新的10个文件，其他删除</p>
+<pre><code>#!/bin/bash
+W=/var/logs/Service/job
+Dlist=(`ls $W`)
+#echo ${Dlist[*]}
+for i in ${Dlist[*]}
+do
+cd $W/$i/logs;ls -r |awk &apos;{if(NR&gt;11){print $0}}&apos;|xargs rm -rf
+done
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/CodeIgniter-and-DataBase/" itemprop="url">
                   CodeIgniter and DataBase
                 </a>
@@ -725,7 +849,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

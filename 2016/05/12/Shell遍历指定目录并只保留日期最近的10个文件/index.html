@@ -84,16 +84,37 @@
 
 
 
-<meta name="description">
+<meta name="description" content="将文件所在目录列表存到一个数组
+#!/bin/bash
+selfname=`basename $0`   #获得脚本自身文件名
+x=0         #数组索引初始
+for filename in *;
+do         #循环当前目录下的文件
+   if [ &amp;quot;$selfname&amp;quot; = &amp;quot;$filename&amp;quot; ];then
+      continu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何正确地申请github.io的独立域名">
-<meta property="og:url" content="http://b-gg.com/2016/05/09/如何正确地申请github-io的独立域名/index.html">
+<meta property="og:title" content="Shell遍历指定目录并只保留日期最近的10个文件">
+<meta property="og:url" content="http://b-gg.com/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/index.html">
 <meta property="og:site_name" content="萨日台">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-05-09T05:37:40.637Z">
+<meta property="og:description" content="将文件所在目录列表存到一个数组
+#!/bin/bash
+selfname=`basename $0`   #获得脚本自身文件名
+x=0         #数组索引初始
+for filename in *;
+do         #循环当前目录下的文件
+   if [ &amp;quot;$selfname&amp;quot; = &amp;quot;$filename&amp;quot; ];then
+      continu">
+<meta property="og:updated_time" content="2016-05-12T09:48:32.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何正确地申请github.io的独立域名">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Shell遍历指定目录并只保留日期最近的10个文件">
+<meta name="twitter:description" content="将文件所在目录列表存到一个数组
+#!/bin/bash
+selfname=`basename $0`   #获得脚本自身文件名
+x=0         #数组索引初始
+for filename in *;
+do         #循环当前目录下的文件
+   if [ &amp;quot;$selfname&amp;quot; = &amp;quot;$filename&amp;quot; ];then
+      continu">
 
 
 
@@ -111,7 +132,7 @@
   };
 </script>
 
-  <title> 如何正确地申请github.io的独立域名 | 萨日台 </title>
+  <title> Shell遍历指定目录并只保留日期最近的10个文件 | 萨日台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +252,7 @@
             
             
               
-                如何正确地申请github.io的独立域名
+                Shell遍历指定目录并只保留日期最近的10个文件
               
             
           </h1>
@@ -243,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T13:37:40+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-05-12T17:44:17+08:00" content="2016-05-12">
+              2016-05-12
             </time>
           </span>
 
@@ -254,8 +275,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/如何正确地申请github-io的独立域名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/如何正确地申请github-io的独立域名/" itemprop="commentsCount"></span>
+                <a href="/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -278,7 +299,31 @@
       
 
       
-        
+        <p>将文件所在目录列表存到一个数组</p>
+<pre><code>#!/bin/bash
+selfname=`basename $0`   #获得脚本自身文件名
+x=0         #数组索引初始
+for filename in *;
+do         #循环当前目录下的文件
+   if [ &quot;$selfname&quot; = &quot;$filename&quot; ];then
+      continue   #本文件跳过
+   else
+      array[$x]=$filename   #文件名给数组索引为x的元素
+      let &quot;x+=1&quot;      #改变索引指针，步长1
+   fi
+done
+echo ${array[@]}   #打印数组，以便检查程序运行情况
+echo $x
+</code></pre><p>遍历指定目录的子目录和文件，保留最新的10个文件，其他删除</p>
+<pre><code>#!/bin/bash
+W=/var/logs/Service/job
+Dlist=(`ls $W`)
+#echo ${Dlist[*]}
+for i in ${Dlist[*]}
+do
+cd $W/$i/logs;ls -r |awk &apos;{if(NR&gt;11){print $0}}&apos;|xargs rm -rf
+done
+</code></pre>
       
     </div>
 
@@ -302,17 +347,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/06/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/05/12/CodeIgniter-and-DataBase/" rel="next" title="CodeIgniter and DataBase">
+                <i class="fa fa-chevron-left"></i> CodeIgniter and DataBase
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/11/Codeigniter初见/" rel="prev" title="Codeigniter初见">
-                Codeigniter初见 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -338,8 +379,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/如何正确地申请github-io的独立域名/"
-           data-title="如何正确地申请github.io的独立域名" data-url="http://b-gg.com/2016/05/09/如何正确地申请github-io的独立域名/">
+      <div class="ds-thread" data-thread-key="2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/"
+           data-title="Shell遍历指定目录并只保留日期最近的10个文件" data-url="http://b-gg.com/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/">
       </div>
     
   </div>

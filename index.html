@@ -305,6 +305,12 @@
 &apos;stricton&apos; =&gt; FALSE,
 &apos;failover&apos; =&gt; array()
 );
+</code></pre><p>有些数据库驱动（例如：PDO，PostgreSQL，Oracle，ODBC）可能需要提供完整的 DSN 字符串。在这种情况下，你需要使用 ‘dsn’ 配置参数，就好像使用该驱动的 PHP 原生扩展一样。例如:</p>
+<pre><code>// PDO
+$db[&apos;default&apos;][&apos;dsn&apos;] = &apos;pgsql:host=localhost;port=5432;dbname=database_name&apos;;
+
+// Oracle
+$db[&apos;default&apos;][&apos;dsn&apos;] = &apos;//localhost/XE&apos;;
 </code></pre>
           
         

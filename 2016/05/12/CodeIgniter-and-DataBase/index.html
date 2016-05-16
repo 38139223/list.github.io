@@ -96,7 +96,7 @@ $db[&amp;apos;default&amp;apos;] = array(
 $db[&amp;apos;default&amp;apos;] = array(
 &amp;apos;dsn&amp;apos;   =&amp;gt; &amp;apos;&amp;apos;,
 &amp;apos;h">
-<meta property="og:updated_time" content="2016-05-12T04:52:53.319Z">
+<meta property="og:updated_time" content="2016-05-16T07:26:54.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeIgniter and DataBase">
 <meta name="twitter:description" content="CodeIgniter 数据库配置无论是测试还是生产环境，你都需要一个配置文件&amp;lt;默认位置application/config/database.php&amp;gt;来保存数据库连接信息(用户名、密码、数据库名等),配置存放在一个多维数组里。
@@ -314,7 +314,70 @@ $db[&apos;default&apos;][&apos;dsn&apos;] = &apos;pgsql:host=localhost;port=5432
 
 // Oracle
 $db[&apos;default&apos;][&apos;dsn&apos;] = &apos;//localhost/XE&apos;;
-</code></pre>
+</code></pre><p>如果你没有指定DSN字符串，会自动生成，如果缺少某些配置，CodeIgniter将从其他配置项中存在的配置自动附加。<br>当主数据库由于某些原因无法连接时，你还可以配置故障转移（failover）。可以像下面这样为一个连接配置故障转移:</p>
+<pre><code>$db[&apos;default&apos;][&apos;failover&apos;] = array(
+    array(
+        &apos;hostname&apos; =&gt; &apos;localhost1&apos;,
+        &apos;username&apos; =&gt; &apos;&apos;,
+        &apos;password&apos; =&gt; &apos;&apos;,
+        &apos;database&apos; =&gt; &apos;&apos;,
+        &apos;dbdriver&apos; =&gt; &apos;mysqli&apos;,
+        &apos;dbprefix&apos; =&gt; &apos;&apos;,
+        &apos;pconnect&apos; =&gt; TRUE,
+        &apos;db_debug&apos; =&gt; TRUE,
+        &apos;cache_on&apos; =&gt; FALSE,
+        &apos;cachedir&apos; =&gt; &apos;&apos;,
+        &apos;char_set&apos; =&gt; &apos;utf8&apos;,
+        &apos;dbcollat&apos; =&gt; &apos;utf8_general_ci&apos;,
+        &apos;swap_pre&apos; =&gt; &apos;&apos;,
+        &apos;encrypt&apos; =&gt; FALSE,
+        &apos;compress&apos; =&gt; FALSE,
+        &apos;stricton&apos; =&gt; FALSE
+    ),
+    array(
+        &apos;hostname&apos; =&gt; &apos;localhost2&apos;,
+        &apos;username&apos; =&gt; &apos;&apos;,
+        &apos;password&apos; =&gt; &apos;&apos;,
+        &apos;database&apos; =&gt; &apos;&apos;,
+        &apos;dbdriver&apos; =&gt; &apos;mysqli&apos;,
+        &apos;dbprefix&apos; =&gt; &apos;&apos;,
+        &apos;pconnect&apos; =&gt; TRUE,
+        &apos;db_debug&apos; =&gt; TRUE,
+        &apos;cache_on&apos; =&gt; FALSE,
+        &apos;cachedir&apos; =&gt; &apos;&apos;,
+        &apos;char_set&apos; =&gt; &apos;utf8&apos;,
+        &apos;dbcollat&apos; =&gt; &apos;utf8_general_ci&apos;,
+        &apos;swap_pre&apos; =&gt; &apos;&apos;,
+        &apos;encrypt&apos; =&gt; FALSE,
+        &apos;compress&apos; =&gt; FALSE,
+        &apos;stricton&apos; =&gt; FALSE
+    )
+);
+</code></pre><p>可以指定任意多个故障转移。<br>使用多维数组可以随意存储多个连接值（开发、测试、生产等），每个环境设定独立连接组且可切换，以“test”环境为例：</p>
+<pre><code>$db[&apos;test&apos;] = array(
+&apos;dsn&apos;   =&gt; &apos;&apos;,
+&apos;hostname&apos; =&gt; &apos;localhost&apos;,
+&apos;username&apos; =&gt; &apos;root&apos;,
+&apos;password&apos; =&gt; &apos;&apos;,
+&apos;database&apos; =&gt; &apos;database_name&apos;,
+&apos;dbdriver&apos; =&gt; &apos;mysqli&apos;,
+&apos;dbprefix&apos; =&gt; &apos;&apos;,
+&apos;pconnect&apos; =&gt; TRUE,
+&apos;db_debug&apos; =&gt; TRUE,
+&apos;cache_on&apos; =&gt; FALSE,
+&apos;cachedir&apos; =&gt; &apos;&apos;,
+&apos;char_set&apos; =&gt; &apos;utf8&apos;,
+&apos;dbcollat&apos; =&gt; &apos;utf8_general_ci&apos;,
+&apos;swap_pre&apos; =&gt; &apos;&apos;,
+&apos;compress&apos; =&gt; FALSE,
+&apos;encrypt&apos; =&gt; FALSE,
+&apos;stricton&apos; =&gt; FALSE,
+&apos;failover&apos; =&gt; array()
+);
+</code></pre><p>然后，在配置文件中设置$active_group变量，告诉系统使用“test”组:</p>
+<pre><code>$active_group = &apos;test&apos;;
+</code></pre><p>实际生产应用中，设定发布程序会根据你的选择，修改该值。</p>
+
       
     </div>
 

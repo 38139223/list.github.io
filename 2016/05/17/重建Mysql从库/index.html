@@ -85,33 +85,30 @@
 
 
 <meta name="description" content="作为一个DBA，做烦心的事情莫过于主从数据不一致，但谁让你赶上了，废话不说，赶紧的把正事办了。
-####第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。
-show slave status\G;
+第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。show slave status\G;
 show processlist;
 stop slave;
-####第二步，确定该slave的master状态。
-show slave statu">
+第二步，确定该slave的master状态。show slave status\G;
+第三步，清">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重建Mysql从库">
 <meta property="og:url" content="http://b-gg.com/2016/05/17/重建Mysql从库/index.html">
 <meta property="og:site_name" content="萨日台">
 <meta property="og:description" content="作为一个DBA，做烦心的事情莫过于主从数据不一致，但谁让你赶上了，废话不说，赶紧的把正事办了。
-####第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。
-show slave status\G;
+第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。show slave status\G;
 show processlist;
 stop slave;
-####第二步，确定该slave的master状态。
-show slave statu">
-<meta property="og:updated_time" content="2016-05-17T07:32:07.439Z">
+第二步，确定该slave的master状态。show slave status\G;
+第三步，清">
+<meta property="og:updated_time" content="2016-05-17T07:51:31.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重建Mysql从库">
 <meta name="twitter:description" content="作为一个DBA，做烦心的事情莫过于主从数据不一致，但谁让你赶上了，废话不说，赶紧的把正事办了。
-####第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。
-show slave status\G;
+第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。show slave status\G;
 show processlist;
 stop slave;
-####第二步，确定该slave的master状态。
-show slave statu">
+第二步，确定该slave的master状态。show slave status\G;
+第三步，清">
 
 
 
@@ -297,38 +294,32 @@ show slave statu">
 
       
         <p>作为一个DBA，做烦心的事情莫过于主从数据不一致，但谁让你赶上了，废话不说，赶紧的把正事办了。</p>
-<p>####第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。</p>
-<pre><code>show slave status\G;
+<h4 id="第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。"><a href="#第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。" class="headerlink" title="第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。"></a>第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。</h4><pre><code>show slave status\G;
 show processlist;
 stop slave;
-</code></pre><p>####第二步，确定该slave的master状态。</p>
-<pre><code>show slave status\G;
-</code></pre><p>####第三步，清除slave的Databases，binlog</p>
-<pre><code>drop database XXXX;
+</code></pre><h4 id="第二步，确定该slave的master状态。"><a href="#第二步，确定该slave的master状态。" class="headerlink" title="第二步，确定该slave的master状态。"></a>第二步，确定该slave的master状态。</h4><pre><code>show slave status\G;
+</code></pre><h4 id="第三步，清除slave的Databases，binlog"><a href="#第三步，清除slave的Databases，binlog" class="headerlink" title="第三步，清除slave的Databases，binlog"></a>第三步，清除slave的Databases，binlog</h4><pre><code>drop database XXXX;
 show master status\G;
 purge binary logs to binlog.000xxx;
 
 or
 
 reset master;
-</code></pre><p>####第四步，从master导出数据</p>
-<pre><code>nohup mysqldump -h192.168.88.66  -uroot -pabcdef -P 3306 -y --default-character-set=utf8 --master-data=2 --single-transaction -A &gt; /data/db.sql  &amp;
+</code></pre><h4 id="第四步，从master导出数据"><a href="#第四步，从master导出数据" class="headerlink" title="第四步，从master导出数据"></a>第四步，从master导出数据</h4><pre><code>nohup mysqldump -h192.168.88.66  -uroot -pabcdef -P 3306 -y --default-character-set=utf8 --master-data=2 --single-transaction -A &gt; /data/db.sql  &amp;
 </code></pre><p>ps：</p>
 <ol>
 <li>–master-data=2：该选项将二进制日志的位置和文件名写入到输出中。该选项要求有RELOAD权限，并且必须启用二进制日志，值为1时CHANGE MASTER语句会被dump输出，值为2时该语句被输出为SQL注释。由于导出用户和复制用户不一致，故此处值为2.</li>
 <li>-y 不导出表空间。</li>
 <li>-A 导出所有的database</li>
 <li>–single-transaction 不要锁表。</li>
-<li><p>–default-character-set=utf8 字符集参数<br>####第五步，数据导入slave</p>
-<p> #nohup mysql -proot@’abcdef’ –default-character-set=utf8 &lt; db.sql &amp;</p>
+<li><p>–default-character-set=utf8 字符集参数</p>
+<h4 id="第五步，数据导入slave"><a href="#第五步，数据导入slave" class="headerlink" title="第五步，数据导入slave"></a>第五步，数据导入slave</h4><p> #nohup mysql -proot@’abcdef’ –default-character-set=utf8 &lt; db.sql &amp;</p>
 <p> or<br> source db.sql;<br> stop slave;<br> reset slave;</p>
 </li>
 </ol>
-<p>####第六步，从数据里查找binlog位置，对齐。</p>
-<pre><code>grep &apos;CHANGE MASTER TO MASTER_LOG_FILE&apos; db.sql |more
+<h4 id="第六步，从数据里查找binlog位置，对齐。"><a href="#第六步，从数据里查找binlog位置，对齐。" class="headerlink" title="第六步，从数据里查找binlog位置，对齐。"></a>第六步，从数据里查找binlog位置，对齐。</h4><pre><code>grep &apos;CHANGE MASTER TO MASTER_LOG_FILE&apos; db.sql |more
 CHANGE MASTER TO MASTER_HOST=&apos;192.168.88.66&apos;,MASTER_USER=&apos;sync&apos;,MASTER_PASSWORD=&apos;9999999&apos;,MASTER_LOG_FILE=&apos;mysql-bin.000027&apos;, MASTER_LOG_POS=237322923;
-</code></pre><p>####第七步，开启slave，恢复主从复制。</p>
-<pre><code>start slave;
+</code></pre><h4 id="第七步，开启slave，恢复主从复制。"><a href="#第七步，开启slave，恢复主从复制。" class="headerlink" title="第七步，开启slave，恢复主从复制。"></a>第七步，开启slave，恢复主从复制。</h4><pre><code>start slave;
 show slave status\G;
 </code></pre><p>观察服务状态。如果你运气好，至此，主从复制已经恢复，怎么样，去喝一杯吧。</p>
 
@@ -478,7 +469,7 @@ show slave status\G;
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。"><span class="nav-number">1.</span> <span class="nav-text">第一步，在负载均衡器中摘掉故障slave，登录slave，查看slave状态，确定无流量后关掉slave。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步，确定该slave的master状态。"><span class="nav-number">2.</span> <span class="nav-text">第二步，确定该slave的master状态。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步，清除slave的Databases，binlog"><span class="nav-number">3.</span> <span class="nav-text">第三步，清除slave的Databases，binlog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步，从master导出数据"><span class="nav-number">4.</span> <span class="nav-text">第四步，从master导出数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步，数据导入slave"><span class="nav-number">5.</span> <span class="nav-text">第五步，数据导入slave</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六步，从数据里查找binlog位置，对齐。"><span class="nav-number">6.</span> <span class="nav-text">第六步，从数据里查找binlog位置，对齐。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七步，开启slave，恢复主从复制。"><span class="nav-number">7.</span> <span class="nav-text">第七步，开启slave，恢复主从复制。</span></a></li></ol></div>
             
           </div>
         </section>

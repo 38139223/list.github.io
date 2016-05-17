@@ -563,9 +563,23 @@ $this-&gt;load-&gt;database($config);
 </code></pre><p>当用 DSN 字符串连接时，要覆盖默认配置，可以像添加查询字符串一样添加配置变量。</p>
 <pre><code>$dsn = &apos;dbdriver://username:password@hostname/database?char_set=utf8&amp;dbcollat=utf8_general_ci&amp;cache_on=true&amp;cachedir=/path/to/cache&apos;;
 $this-&gt;load-&gt;database($dsn);
-</code></pre><p>####连接到多个数据库<br>项目中经常用到连接多个数据库：</p>
+</code></pre><h4 id="连接到多个数据库"><a href="#连接到多个数据库" class="headerlink" title="连接到多个数据库"></a>连接到多个数据库</h4><p>项目中经常用到连接多个数据库：</p>
 <pre><code>$DB1 = $this-&gt;load-&gt;database(&apos;group_one&apos;, TRUE);
 $DB2 = $this-&gt;load-&gt;database(&apos;group_two&apos;, TRUE);
+</code></pre><p>第一个参数group_two等是你要连接的组名称，第二个参数 TRUE 表示函数将返回数据库对象。<br>当使用这种方法连接数据库时，你将通过你的对象名来执行数据库命令：</p>
+<pre><code>$DB1-&gt;query();
+$DB2-&gt;result();
+etc...
+与之前的方法对比一下
+$this-&gt;db-&gt;query();
+$this-&gt;db-&gt;result();
+etc... 
+</code></pre><p>ps:<br>如果只是想切换到同一个连接不同的数据库，那就没必要创建独立的数据库配置：</p>
+<pre><code>$this-&gt;db-&gt;db_select($database2_name);
+</code></pre><h4 id="重新连接，保持连接有效"><a href="#重新连接，保持连接有效" class="headerlink" title="重新连接，保持连接有效"></a>重新连接，保持连接有效</h4><p>当你的php代码处理任务复杂（处理图片等）时，很有可能会超过数据库的超时值，此时可以考虑在执行后续查询之前先调用reconnect()方法向数据库发送ping命令，这样可以保持连接有效或重新建立连接。</p>
+<pre><code>$this-&gt;db-&gt;reconnect();
+</code></pre><h4 id="手动关闭连接"><a href="#手动关闭连接" class="headerlink" title="手动关闭连接"></a>手动关闭连接</h4><p>CodeIgniter可以智能关闭数据库连接，你也可以选择手动关闭。</p>
+<pre><code>$this-&gt;db-&gt;close();
 </code></pre>
           
         
@@ -1304,7 +1318,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

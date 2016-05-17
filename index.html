@@ -303,8 +303,9 @@ mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e &quot;${use_db}&quo
 cd /data/product/
 mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} ${DB_NAME} &lt; ${DAY}_product.sql
 rm -rf /data/product/${DAY}_product.sql
-</code></pre><p> 其中${DAY}_product.sql是每天晚上都会定时备份的库文件。<br> 30 05 <em> </em> * sh /crontab/exdata.sh</p>
-
+</code></pre><p> 其中${DAY}_product.sql是每天晚上都会定时备份的库文件。</p>
+<pre><code>30 05 * * * sh /crontab/exdata.sh
+</code></pre>
           
         
       

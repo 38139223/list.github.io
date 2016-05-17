@@ -102,7 +102,7 @@ EXDAY=`date -d &amp;quot;3 day ago&amp;quot; +%Y%m%d`
 HOSTNAME=&amp;quot;127.0.0.1&amp;quot; #hostname
 PORT=&amp;quot;3306&amp;quot;
 USERNAME=&amp;quot;root&amp;quot;">
-<meta property="og:updated_time" content="2016-05-17T06:24:40.512Z">
+<meta property="og:updated_time" content="2016-05-17T06:27:21.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell定时从备份中恢复一个数据库">
 <meta name="twitter:description" content="非常简单的脚本。
@@ -315,8 +315,9 @@ mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e &quot;${use_db}&quo
 cd /data/product/
 mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} ${DB_NAME} &lt; ${DAY}_product.sql
 rm -rf /data/product/${DAY}_product.sql
-</code></pre><p> 其中${DAY}_product.sql是每天晚上都会定时备份的库文件。<br> 30 05 <em> </em> * sh /crontab/exdata.sh</p>
-
+</code></pre><p> 其中${DAY}_product.sql是每天晚上都会定时备份的库文件。</p>
+<pre><code>30 05 * * * sh /crontab/exdata.sh
+</code></pre>
       
     </div>
 

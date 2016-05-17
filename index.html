@@ -233,6 +233,238 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/17/Shell定时从备份中恢复一个数据库/" itemprop="url">
+                  Shell定时从备份中恢复一个数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T14:19:10+08:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/Shell定时从备份中恢复一个数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/Shell定时从备份中恢复一个数据库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/16/CodeIgniter如果连接到mysql数据库/" itemprop="url">
+                  CodeIgniter如果连接到mysql数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-16T15:36:44+08:00" content="2016-05-16">
+              2016-05-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/16/CodeIgniter如果连接到mysql数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/CodeIgniter如果连接到mysql数据库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h4><h5 id="CodeIgniter连接数据库，可以自动或者手动。"><a href="#CodeIgniter连接数据库，可以自动或者手动。" class="headerlink" title="CodeIgniter连接数据库，可以自动或者手动。"></a>CodeIgniter连接数据库，可以自动或者手动。</h5><ol>
+<li><p>自动连接，每个页面加载时自动实例化数据库类。application/config/autoload.php文件中的library数据里添加database</p>
+<p> $autoload[‘libraries’] = array(‘database’);</p>
+</li>
+<li><p>手动连接，在有需要的函数里手工添加代码连接数据库，或写道类的构造函数里，让整个类访问。</p>
+<p> $this-&gt;load-&gt;database();</p>
+</li>
+</ol>
+<p>如果 database()函数没有指定第一个参数，它将使用数据库配置文件中指定的组连接。</p>
+<pre><code>$this-&gt;load-&gt;database(&apos;group_name&apos;);
+</code></pre><p>连接一个完全手动指定的数据库，也可以穿一个数组参数；</p>
+<pre><code>$config[&apos;hostname&apos;] = &apos;localhost&apos;;
+$config[&apos;username&apos;] = &apos;myusername&apos;;
+$config[&apos;password&apos;] = &apos;mypassword&apos;;
+$config[&apos;database&apos;] = &apos;mydatabase&apos;;
+$config[&apos;dbdriver&apos;] = &apos;mysqli&apos;;
+$config[&apos;dbprefix&apos;] = &apos;&apos;;
+$config[&apos;pconnect&apos;] = FALSE;
+$config[&apos;db_debug&apos;] = TRUE;
+$config[&apos;cache_on&apos;] = FALSE;
+$config[&apos;cachedir&apos;] = &apos;&apos;;
+$config[&apos;char_set&apos;] = &apos;utf8&apos;;
+$config[&apos;dbcollat&apos;] = &apos;utf8_general_ci&apos;;
+$this-&gt;load-&gt;database($config);
+</code></pre><p>对于 PDO 驱动，你应该使用 $config[‘dsn’] 取代 ‘hostname’ 和 ‘database’ 参数：</p>
+<pre><code>$config[&apos;dsn&apos;] = &apos;mysql:host=localhost;dbname=mydatabase&apos;;
+</code></pre><p>当用 DSN 字符串连接时，要覆盖默认配置，可以像添加查询字符串一样添加配置变量。</p>
+<pre><code>$dsn = &apos;dbdriver://username:password@hostname/database?char_set=utf8&amp;dbcollat=utf8_general_ci&amp;cache_on=true&amp;cachedir=/path/to/cache&apos;;
+$this-&gt;load-&gt;database($dsn);
+</code></pre><p>####连接到多个数据库<br>项目中经常用到连接多个数据库：</p>
+<pre><code>$DB1 = $this-&gt;load-&gt;database(&apos;group_one&apos;, TRUE);
+$DB2 = $this-&gt;load-&gt;database(&apos;group_two&apos;, TRUE);
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/" itemprop="url">
                   Shell遍历指定目录并只保留日期最近的10个文件
                 </a>
@@ -912,13 +1144,20 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>

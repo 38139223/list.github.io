@@ -284,7 +284,27 @@
       
         
           
-            
+            <p>非常简单的脚本。</p>
+<pre><code>#!/bin/bash
+DAY=`date -d &quot;1 day ago&quot; +%Y%m%d`
+EXDAY=`date -d &quot;3 day ago&quot; +%Y%m%d`
+HOSTNAME=&quot;127.0.0.1&quot; #hostname
+PORT=&quot;3306&quot;
+USERNAME=&quot;root&quot;
+PASSWORD=&quot;123456&quot;
+EX_DBNAME=${EXDAY}_product
+DB_NAME=${DAY}_product
+drop_exdb=&quot;drop database ${EX_DBNAME};&quot;
+create_db_sql=&quot;create database ${DB_NAME}; &quot;
+use_db=&quot;use ${DB_NAME};&quot;
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e &quot;${drop_exdb}&quot;
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e &quot;${create_db_sql}&quot;
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e &quot;${use_db}&quot;
+cd /data/product/
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} ${DB_NAME} &lt; ${DAY}_product.sql
+rm -rf /data/product/${DAY}_product.sql
+</code></pre><p> 其中${DAY}_product.sql是每天晚上都会定时备份的库文件。<br> 30 05 <em> </em> * sh /crontab/exdata.sh</p>
+
           
         
       
@@ -1154,7 +1174,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

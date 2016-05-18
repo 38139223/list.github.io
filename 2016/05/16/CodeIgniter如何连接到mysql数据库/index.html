@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="database codeigniter mysql pdo," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description">
+<meta name="description" content="连接数据库CodeIgniter连接数据库，可以自动或者手动。
+自动连接，每个页面加载时自动实例化数据库类。application/config/autoload.php文件中的library数据里添加database
+ $autoload[‘libraries’] = array(‘database’);
+
+手动连接，在有需要的函数里手工添加代码连接数据库，或写道类的构造函数里，让整个类访问。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何正确地申请github.io的独立域名">
-<meta property="og:url" content="http://b-gg.com/2016/05/09/如何正确地申请github-io的独立域名/index.html">
+<meta property="og:title" content="CodeIgniter如何连接到mysql数据库">
+<meta property="og:url" content="http://b-gg.com/2016/05/16/CodeIgniter如何连接到mysql数据库/index.html">
 <meta property="og:site_name" content="萨日台">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-05-09T05:37:40.637Z">
+<meta property="og:description" content="连接数据库CodeIgniter连接数据库，可以自动或者手动。
+自动连接，每个页面加载时自动实例化数据库类。application/config/autoload.php文件中的library数据里添加database
+ $autoload[‘libraries’] = array(‘database’);
+
+手动连接，在有需要的函数里手工添加代码连接数据库，或写道类的构造函数里，让整个类访问。">
+<meta property="og:updated_time" content="2016-05-17T09:32:18.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何正确地申请github.io的独立域名">
-<meta name="twitter:description">
+<meta name="twitter:title" content="CodeIgniter如何连接到mysql数据库">
+<meta name="twitter:description" content="连接数据库CodeIgniter连接数据库，可以自动或者手动。
+自动连接，每个页面加载时自动实例化数据库类。application/config/autoload.php文件中的library数据里添加database
+ $autoload[‘libraries’] = array(‘database’);
+
+手动连接，在有需要的函数里手工添加代码连接数据库，或写道类的构造函数里，让整个类访问。">
 
 
 
@@ -111,7 +123,7 @@
   };
 </script>
 
-  <title> 如何正确地申请github.io的独立域名 | 萨日台 </title>
+  <title> CodeIgniter如何连接到mysql数据库 | 萨日台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +243,7 @@
             
             
               
-                如何正确地申请github.io的独立域名
+                CodeIgniter如何连接到mysql数据库
               
             
           </h1>
@@ -243,8 +255,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T13:37:40+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-05-16T15:36:44+08:00" content="2016-05-16">
+              2016-05-16
             </time>
           </span>
 
@@ -254,8 +266,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/如何正确地申请github-io的独立域名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/如何正确地申请github-io的独立域名/" itemprop="commentsCount"></span>
+                <a href="/2016/05/16/CodeIgniter如何连接到mysql数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/CodeIgniter如何连接到mysql数据库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -278,7 +290,53 @@
       
 
       
-        
+        <h4 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h4><h5 id="CodeIgniter连接数据库，可以自动或者手动。"><a href="#CodeIgniter连接数据库，可以自动或者手动。" class="headerlink" title="CodeIgniter连接数据库，可以自动或者手动。"></a>CodeIgniter连接数据库，可以自动或者手动。</h5><ol>
+<li><p>自动连接，每个页面加载时自动实例化数据库类。application/config/autoload.php文件中的library数据里添加database</p>
+<p> $autoload[‘libraries’] = array(‘database’);</p>
+</li>
+<li><p>手动连接，在有需要的函数里手工添加代码连接数据库，或写道类的构造函数里，让整个类访问。</p>
+<p> $this-&gt;load-&gt;database();</p>
+</li>
+</ol>
+<p>如果 database()函数没有指定第一个参数，它将使用数据库配置文件中指定的组连接。</p>
+<pre><code>$this-&gt;load-&gt;database(&apos;group_name&apos;);
+</code></pre><p>连接一个完全手动指定的数据库，也可以穿一个数组参数；</p>
+<pre><code>$config[&apos;hostname&apos;] = &apos;localhost&apos;;
+$config[&apos;username&apos;] = &apos;myusername&apos;;
+$config[&apos;password&apos;] = &apos;mypassword&apos;;
+$config[&apos;database&apos;] = &apos;mydatabase&apos;;
+$config[&apos;dbdriver&apos;] = &apos;mysqli&apos;;
+$config[&apos;dbprefix&apos;] = &apos;&apos;;
+$config[&apos;pconnect&apos;] = FALSE;
+$config[&apos;db_debug&apos;] = TRUE;
+$config[&apos;cache_on&apos;] = FALSE;
+$config[&apos;cachedir&apos;] = &apos;&apos;;
+$config[&apos;char_set&apos;] = &apos;utf8&apos;;
+$config[&apos;dbcollat&apos;] = &apos;utf8_general_ci&apos;;
+$this-&gt;load-&gt;database($config);
+</code></pre><p>对于 PDO 驱动，你应该使用 $config[‘dsn’] 取代 ‘hostname’ 和 ‘database’ 参数：</p>
+<pre><code>$config[&apos;dsn&apos;] = &apos;mysql:host=localhost;dbname=mydatabase&apos;;
+</code></pre><p>当用 DSN 字符串连接时，要覆盖默认配置，可以像添加查询字符串一样添加配置变量。</p>
+<pre><code>$dsn = &apos;dbdriver://username:password@hostname/database?char_set=utf8&amp;dbcollat=utf8_general_ci&amp;cache_on=true&amp;cachedir=/path/to/cache&apos;;
+$this-&gt;load-&gt;database($dsn);
+</code></pre><h4 id="连接到多个数据库"><a href="#连接到多个数据库" class="headerlink" title="连接到多个数据库"></a>连接到多个数据库</h4><p>项目中经常用到连接多个数据库：</p>
+<pre><code>$DB1 = $this-&gt;load-&gt;database(&apos;group_one&apos;, TRUE);
+$DB2 = $this-&gt;load-&gt;database(&apos;group_two&apos;, TRUE);
+</code></pre><p>第一个参数group_two等是你要连接的组名称，第二个参数 TRUE 表示函数将返回数据库对象。<br>当使用这种方法连接数据库时，你将通过你的对象名来执行数据库命令：</p>
+<pre><code>$DB1-&gt;query();
+$DB2-&gt;result();
+etc...
+与之前的方法对比一下
+$this-&gt;db-&gt;query();
+$this-&gt;db-&gt;result();
+etc... 
+</code></pre><p>ps:<br>如果只是想切换到同一个连接不同的数据库，那就没必要创建独立的数据库配置：</p>
+<pre><code>$this-&gt;db-&gt;db_select($database2_name);
+</code></pre><h4 id="重新连接，保持连接有效"><a href="#重新连接，保持连接有效" class="headerlink" title="重新连接，保持连接有效"></a>重新连接，保持连接有效</h4><p>当你的php代码处理任务复杂（处理图片等）时，很有可能会超过数据库的超时值，此时可以考虑在执行后续查询之前先调用reconnect()方法向数据库发送ping命令，这样可以保持连接有效或重新建立连接。</p>
+<pre><code>$this-&gt;db-&gt;reconnect();
+</code></pre><h4 id="手动关闭连接"><a href="#手动关闭连接" class="headerlink" title="手动关闭连接"></a>手动关闭连接</h4><p>CodeIgniter可以智能关闭数据库连接，你也可以选择手动关闭。</p>
+<pre><code>$this-&gt;db-&gt;close();
+</code></pre>
       
     </div>
 
@@ -297,21 +355,27 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/database-codeigniter-mysql-pdo/" rel="tag">#database codeigniter mysql pdo</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/06/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/05/12/Shell遍历指定目录并只保留日期最近的10个文件/" rel="next" title="Shell遍历指定目录并只保留日期最近的10个文件">
+                <i class="fa fa-chevron-left"></i> Shell遍历指定目录并只保留日期最近的10个文件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/11/Codeigniter初见/" rel="prev" title="Codeigniter初见">
-                Codeigniter初见 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/17/Shell定时从备份中恢复一个数据库/" rel="prev" title="Shell定时从备份中恢复一个数据库">
+                Shell定时从备份中恢复一个数据库 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -338,8 +402,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/如何正确地申请github-io的独立域名/"
-           data-title="如何正确地申请github.io的独立域名" data-url="http://b-gg.com/2016/05/09/如何正确地申请github-io的独立域名/">
+      <div class="ds-thread" data-thread-key="2016/05/16/CodeIgniter如何连接到mysql数据库/"
+           data-title="CodeIgniter如何连接到mysql数据库" data-url="http://b-gg.com/2016/05/16/CodeIgniter如何连接到mysql数据库/">
       </div>
     
   </div>
@@ -423,7 +487,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接数据库"><span class="nav-number">1.</span> <span class="nav-text">连接数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CodeIgniter连接数据库，可以自动或者手动。"><span class="nav-number">1.1.</span> <span class="nav-text">CodeIgniter连接数据库，可以自动或者手动。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接到多个数据库"><span class="nav-number">2.</span> <span class="nav-text">连接到多个数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新连接，保持连接有效"><span class="nav-number">3.</span> <span class="nav-text">重新连接，保持连接有效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动关闭连接"><span class="nav-number">4.</span> <span class="nav-text">手动关闭连接</span></a></li></ol></div>
             
           </div>
         </section>

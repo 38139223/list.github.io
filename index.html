@@ -233,6 +233,150 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/17/CodeIgniter中数据库查询的实现/" itemprop="url">
+                  CodeIgniter中数据库查询的实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T17:48:39+08:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/CodeIgniter中数据库查询的实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/CodeIgniter中数据库查询的实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>上文说完了CodeIgniter和数据库建立连接的设置，这一篇我们说说如何在CI框架里完成对数据库的查询操作。</p>
+<h3 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h3><p>你经常用到的query函数，在做读类型的查询（select）时，query()函数将返回一个为<strong>对象</strong>类型的结果集；当执行写类型的操作（INSERT\DELETE\UPDATE）时，query函数则简单地返回TRUE/FALSE。你可以将query()函数返回的结果赋值给一个变量。</p>
+<pre><code>$query = $this-&gt;db-&gt;query(&apos;NEW QUERY&apos;);
+</code></pre><h4 id="简单化查询"><a href="#简单化查询" class="headerlink" title="简单化查询"></a>简单化查询</h4><p>simple_query函数是$this-&gt;db-&gt;query()的简化版，简单到只是提交一个查询，simple_query()函数返回数据库驱动器的”execute”方法的返回值。</p>
+<pre><code>if ($this-&gt;db-&gt;simple_query(&apos;NEW QUERY&apos;))
+{
+    echo &quot;Success!&quot;
+}
+else
+{
+    echo &quot;Query failed!&quot;
+}
+</code></pre><h4 id="指定数据库前缀"><a href="#指定数据库前缀" class="headerlink" title="指定数据库前缀"></a>指定数据库前缀</h4><pre><code>$this-&gt;db-&gt;set_dbprefix(&apos;newprefix&apos;);
+$this-&gt;db-&gt;dbprefix(&apos;table_name&apos;);
+</code></pre><p>你设定或者修改了数据库前缀参数，把它加在SQL语句的表名前面。</p>
+<h4 id="保护标识符"><a href="#保护标识符" class="headerlink" title="保护标识符"></a>保护标识符</h4><p>尽管使用查询构造器会自动保护标识符，有人还是愿意使用手工语句：</p>
+<pre><code>$this-&gt;db-&gt;protect_identifiers(&apos;table_name&apos;);
+</code></pre><p>protect_identifiers(‘table_name’,TRUE);函数的第二个参数作用是启用你在数据库配置文件中定义的dbprefix参数。</p>
+<h4 id="转义查询"><a href="#转义查询" class="headerlink" title="转义查询"></a>转义查询</h4><p>CodeIgniter提供了三种方法实现转义。</p>
+<ol>
+<li><p>$this-&gt;db-&gt;escape()函数仅转义字符串类型，加单引号。</p>
+<p> $sql = “INSERT INTO table (title) VALUES(“.$this-&gt;db-&gt;escape($title).”)”;</p>
+</li>
+<li><p>$this-&gt;db-&gt;escape_str()函数忽略数据类型。</p>
+<p> $sql = “INSERT INTO table (title) VALUES(“.$this-&gt;db-&gt;escape_str($title).”)”;</p>
+</li>
+<li><p>$this-&gt;db-&gt;escape_like_str()函数用于处理LIKE语句中的字符串。</p>
+<p> $search = ‘20% raise’;<br> $sql = “SELECT id FROM table WHERE column LIKE ‘%” .<br> $this-&gt;db-&gt;escape_like_str($search).”%’”;</p>
+</li>
+</ol>
+<h4 id="查询绑定"><a href="#查询绑定" class="headerlink" title="查询绑定"></a>查询绑定</h4><p>查询绑定可以简化你的查询语法，它通过系统自动的为你将各个查询组装在一起：</p>
+<pre><code>$sql = &quot;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&quot;;
+$this-&gt;db-&gt;query($sql,array(3,&apos;live&apos;,&apos;Rick&apos;));
+</code></pre><p>查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。<br>也可以使用数组的数组进行绑定，里面的数组会被转换成IN语句的集合：</p>
+<pre><code>$sql = &quot;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&quot;;
+$this-&gt;db-&gt;query($sql,array(array(3,6),&apos;live&apos;,&apos;Rick&apos;));
+</code></pre><p>上面的例子被转换成这样的SQL语句：</p>
+<pre><code>SELECT * FROM some_table WHERE id IN(3,6) AND status = &apos;live&apos; AND author = &apos;Rick&apos;
+</code></pre><p>查询绑定将值自动转义，安全查询。</p>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>$this-&gt;db-&gt;error()方法可以得到一个包含错误代码和错误消息的数组。</p>
+<pre><code>if (! $this-&gt;db-&gt;simple_query(&apos;SELECT `example_field` FROM `example_table`&apos;))
+    {
+        $error = $this-&gt;db-&gt;error(); //Has keys &apos;code&apos; and &apos;message&apos;
+    }
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/重建Mysql从库/" itemprop="url">
                   重建Mysql从库
                 </a>
@@ -483,8 +627,8 @@ rm -rf /data/product/${DAY}_product.sql
             
               
                 
-                <a class="post-title-link" href="/2016/05/16/CodeIgniter如果连接到mysql数据库/" itemprop="url">
-                  CodeIgniter如果连接到mysql数据库
+                <a class="post-title-link" href="/2016/05/16/CodeIgniter如何连接到mysql数据库/" itemprop="url">
+                  CodeIgniter如何连接到mysql数据库
                 </a>
               
             
@@ -508,8 +652,8 @@ rm -rf /data/product/${DAY}_product.sql
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/16/CodeIgniter如果连接到mysql数据库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/CodeIgniter如果连接到mysql数据库/" itemprop="commentsCount"></span>
+                <a href="/2016/05/16/CodeIgniter如何连接到mysql数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/CodeIgniter如何连接到mysql数据库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1308,7 +1452,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1318,7 +1462,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -233,6 +233,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/23/Mysql-root-密码忘记如何恢复？/" itemprop="url">
+                  Mysql root 密码忘记如何恢复？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-23T18:03:19+08:00" content="2016-05-23">
+              2016-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/23/Mysql-root-密码忘记如何恢复？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/23/Mysql-root-密码忘记如何恢复？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？"><a href="#Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？" class="headerlink" title="Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？"></a>Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？</h4><p>显然最直接有效的还是重置修改。</p>
+<p>忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。<br>根据下面的方法，可以在任何linux发行版下重置root密码。centos mysql 忘记密码，ubuntu mysql 忘记密码,redhat mysql 忘记密码<br>1.停止mysql服务，使用下面方法启动mysql</p>
+<pre><code>service mysql stop
+
+mysqld_safe –skip-grant-tables &amp;  #安全模式启动
+mysqld_safe --skip-grant-tables --skip-networking &amp;   #提高安全性，可以禁止远程连接
+</code></pre><p>2.连接到mysql，不需要输入密码，直接回车</p>
+<pre><code>mysql -uroot –p  # mysql -p
+</code></pre><p>3.重置root密码</p>
+<pre><code>update user set password=PASSWORD(&quot;abcdef&quot;) where user=&apos;root&apos;;
+#Mysql5.7   
+update mysql.user set authentication_string=password(&apos;123qwe&apos;) where user=&apos;root&apos; and Host = &apos;localhost&apos;; 
+</code></pre><p> mysql-5.7.x mysql.user表里没有password字段了，取而代之的是authentication_string</p>
+<p> 4.重启Mysql</p>
+<pre><code>service mysql restart
+</code></pre><p> 5.赋权</p>
+<pre><code>但此时操作似乎功能不完全，还要alter user…
+</code></pre><p>mysql&gt; alter user ‘root’@’localhost’ identified by ‘123’;<br>这样也可以：</p>
+<p>mysql&gt; set password for ‘root’@’localhost’=password(‘123’);<br>重点给大家介绍下mysql 5.7 root密码修改</p>
+<p>MySQL管理者密码设置或修改：</p>
+<p>依据官方说明5.6以后版本，第一次启动时会在root目录下生产一个随机密码，文件名.mysql_secret。</p>
+<p>[root@bright ~]# cat /root/.mysql_secret</p>
+<h1 id="Password-set-for-user-‘root-localhost’-at-2015-03-27-23-12-10"><a href="#Password-set-for-user-‘root-localhost’-at-2015-03-27-23-12-10" class="headerlink" title="Password set for user ‘root@localhost’ at 2015-03-27 23:12:10"></a>Password set for user ‘root@localhost’ at 2015-03-27 23:12:10</h1><p>:Jj+FTiqvyrF<br>[root@bright ~]# cd /usr/local/mysql/bin/<br>[root@bright bin]# ./mysqladmin -u root -h localhost password ‘123456’ -p<br>Enter password: #此行输入.mysql_secret里第二行内容</p>
+<p>mysqladmin: [Warning] Using a password on the command line interface can be insecure.<br>Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.<br>官方的方式，笔者无论是否使用–skip-grant-tables启动mysql都测试失败，亲们可以测试：</p>
+<p>shell&gt;mysql -uroot -p’password’ #password即.mysql_secret里的密码<br>mysql&gt;SET PASSWORD = PASSWORD(‘newpasswd’);</p>
+<p>旧版本，安装后ROOT无密码，按如下操作：</p>
+<p>方法一：</p>
+<p>shell&gt;service mysqld stop #停止mysql服务<br>shell&gt;mysqld_safe –skip-grant-tables &amp; #以不启用grant-tables模式启动mysql<br>shell&gt;mysql -uroot -p #输入命令回车进入，出现输入密码提示直接回车。<br>mysql&gt;use mysql;<br>mysql&gt;update user set password=PASSWORD(“123456”)where user=”root”; #更改密码为 newpassord<br>mysql&gt;flush privileges; #更新权限<br>mysql&gt;quit #退出<br>方法二：</p>
+<p>shell&gt;service mysqld stop #停止mysql服务<br>shell&gt;mysqld_safe –skip-grant-tables &amp; #以不启用grant-tables模式启动mysql<br>shell&gt;mysql -uroot -p #输入命令回车进入，出现输入密码提示直接回车。<br>mysql &gt; set password for root@localhost = password(‘mysqlroot’);<br>方法三：</p>
+<p>shell&gt;/path/mysqladmin -u UserName -h Host password ‘new_password’ -p</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/CodeIgniter中数据库查询的实现/" itemprop="url">
                   CodeIgniter中数据库查询的实现
                 </a>
@@ -317,7 +447,7 @@ $this-&gt;db-&gt;dbprefix(&apos;table_name&apos;);
 <h4 id="查询绑定"><a href="#查询绑定" class="headerlink" title="查询绑定"></a>查询绑定</h4><p>查询绑定可以简化你的查询语法，它通过系统自动的为你将各个查询组装在一起：</p>
 <pre><code>$sql = &quot;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&quot;;
 $this-&gt;db-&gt;query($sql,array(3,&apos;live&apos;,&apos;Rick&apos;));
-</code></pre><p>查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。<br>也可以使用数组的数组进行绑定，里面的数组会被转换成IN语句的集合：</p>
+</code></pre><p>查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。<br>也可以使用数组的数组进行绑定，里面的数组会被转换成IN语句的集合：<br>查询绑定时，如果参数是整数，要用(int)转换一下，要不然也会被加上单引号</p>
 <pre><code>$sql = &quot;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&quot;;
 $this-&gt;db-&gt;query($sql,array(array(3,6),&apos;live&apos;,&apos;Rick&apos;));
 </code></pre><p>上面的例子被转换成这样的SQL语句：</p>
@@ -1452,7 +1582,7 @@ A：非常简单，[官网](http://codeigniter.org.cn)下载后，上传至测�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

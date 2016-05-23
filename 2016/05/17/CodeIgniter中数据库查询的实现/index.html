@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="萨日台">
 <meta property="og:description" content="上文说完了CodeIgniter和数据库建立连接的设置，这一篇我们说说如何在CI框架里完成对数据库的查询操作。
 基本查询你经常用到的query函数，在做读类型的查询（select）时，query()函数将返回一个为对象类型的结果集；当执行写类型的操作（INSERT\DELETE\UPDATE）时，query函数则简单地返回TRUE/FALSE。你可以将query()函数返回的结果赋值给一个变量。">
-<meta property="og:updated_time" content="2016-05-18T02:32:58.634Z">
+<meta property="og:updated_time" content="2016-05-18T03:30:28.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeIgniter中数据库查询的实现">
 <meta name="twitter:description" content="上文说完了CodeIgniter和数据库建立连接的设置，这一篇我们说说如何在CI框架里完成对数据库的查询操作。
@@ -314,7 +314,7 @@ $this-&gt;db-&gt;dbprefix(&apos;table_name&apos;);
 <h4 id="查询绑定"><a href="#查询绑定" class="headerlink" title="查询绑定"></a>查询绑定</h4><p>查询绑定可以简化你的查询语法，它通过系统自动的为你将各个查询组装在一起：</p>
 <pre><code>$sql = &quot;SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?&quot;;
 $this-&gt;db-&gt;query($sql,array(3,&apos;live&apos;,&apos;Rick&apos;));
-</code></pre><p>查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。<br>也可以使用数组的数组进行绑定，里面的数组会被转换成IN语句的集合：</p>
+</code></pre><p>查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。<br>也可以使用数组的数组进行绑定，里面的数组会被转换成IN语句的集合：<br>查询绑定时，如果参数是整数，要用(int)转换一下，要不然也会被加上单引号</p>
 <pre><code>$sql = &quot;SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?&quot;;
 $this-&gt;db-&gt;query($sql,array(array(3,6),&apos;live&apos;,&apos;Rick&apos;));
 </code></pre><p>上面的例子被转换成这样的SQL语句：</p>
@@ -366,6 +366,10 @@ $this-&gt;db-&gt;query($sql,array(array(3,6),&apos;live&apos;,&apos;Rick&apos;))
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/23/Mysql-root-密码忘记如何恢复？/" rel="prev" title="Mysql root 密码忘记如何恢复？">
+                Mysql root 密码忘记如何恢复？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -437,7 +441,7 @@ $this-&gt;db-&gt;query($sql,array(array(3,6),&apos;live&apos;,&apos;Rick&apos;))
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

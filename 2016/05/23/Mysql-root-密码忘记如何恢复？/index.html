@@ -85,21 +85,30 @@
 
 
 <meta name="description" content="Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？显然最直接有效的还是重置修改。
-忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。根据下面的方法，可以在任何linux发行版下重置root密码。centos mysql 忘记密码，ubuntu mysql 忘记密码,redhat mysql 忘记密码1.停止mysql服务，使用下面方法启动mysql
-s">
+忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。如何拯救root？请看下文：1.停止mysql服务，使用下面方法启动mysql
+service mysql stop
+
+mysqld_safe –skip-grant-tables &amp;amp;  #安全模式启动
+mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql root 密码忘记如何恢复？">
+<meta property="og:title" content="Centos Mysql root 密码忘记如何恢复？">
 <meta property="og:url" content="http://b-gg.com/2016/05/23/Mysql-root-密码忘记如何恢复？/index.html">
 <meta property="og:site_name" content="萨日台">
 <meta property="og:description" content="Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？显然最直接有效的还是重置修改。
-忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。根据下面的方法，可以在任何linux发行版下重置root密码。centos mysql 忘记密码，ubuntu mysql 忘记密码,redhat mysql 忘记密码1.停止mysql服务，使用下面方法启动mysql
-s">
-<meta property="og:updated_time" content="2016-05-23T10:44:11.453Z">
+忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。如何拯救root？请看下文：1.停止mysql服务，使用下面方法启动mysql
+service mysql stop
+
+mysqld_safe –skip-grant-tables &amp;amp;  #安全模式启动
+mysql">
+<meta property="og:updated_time" content="2016-05-24T03:26:46.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql root 密码忘记如何恢复？">
+<meta name="twitter:title" content="Centos Mysql root 密码忘记如何恢复？">
 <meta name="twitter:description" content="Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？显然最直接有效的还是重置修改。
-忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。根据下面的方法，可以在任何linux发行版下重置root密码。centos mysql 忘记密码，ubuntu mysql 忘记密码,redhat mysql 忘记密码1.停止mysql服务，使用下面方法启动mysql
-s">
+忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。如何拯救root？请看下文：1.停止mysql服务，使用下面方法启动mysql
+service mysql stop
+
+mysqld_safe –skip-grant-tables &amp;amp;  #安全模式启动
+mysql">
 
 
 
@@ -117,7 +126,7 @@ s">
   };
 </script>
 
-  <title> Mysql root 密码忘记如何恢复？ | 萨日台 </title>
+  <title> Centos Mysql root 密码忘记如何恢复？ | 萨日台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -237,7 +246,7 @@ s">
             
             
               
-                Mysql root 密码忘记如何恢复？
+                Centos Mysql root 密码忘记如何恢复？
               
             
           </h1>
@@ -285,7 +294,7 @@ s">
 
       
         <h4 id="Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？"><a href="#Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？" class="headerlink" title="Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？"></a>Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？</h4><p>显然最直接有效的还是重置修改。</p>
-<p>忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。<br>根据下面的方法，可以在任何linux发行版下重置root密码。centos mysql 忘记密码，ubuntu mysql 忘记密码,redhat mysql 忘记密码<br>1.停止mysql服务，使用下面方法启动mysql</p>
+<p>忘记了mysql 用户密码甚至是root的用户密码，导致不能用客户端连接数据库，苦恼。<br>如何拯救root？请看下文：<br>1.停止mysql服务，使用下面方法启动mysql</p>
 <pre><code>service mysql stop
 
 mysqld_safe –skip-grant-tables &amp;  #安全模式启动
@@ -301,19 +310,16 @@ update mysql.user set authentication_string=password(&apos;123qwe&apos;) where u
 <pre><code>service mysql restart
 </code></pre><p> 5.赋权</p>
 <pre><code>但此时操作似乎功能不完全，还要alter user…
-</code></pre><p>mysql&gt; alter user ‘root’@’localhost’ identified by ‘123’;<br>这样也可以：</p>
-<p>mysql&gt; set password for ‘root’@’localhost’=password(‘123’);<br>重点给大家介绍下mysql 5.7 root密码修改</p>
-<p>MySQL管理者密码设置或修改：</p>
-<p>依据官方说明5.6以后版本，第一次启动时会在root目录下生产一个随机密码，文件名.mysql_secret。</p>
-<p>[root@bright ~]# cat /root/.mysql_secret</p>
-<h1 id="Password-set-for-user-‘root-localhost’-at-2015-03-27-23-12-10"><a href="#Password-set-for-user-‘root-localhost’-at-2015-03-27-23-12-10" class="headerlink" title="Password set for user ‘root@localhost’ at 2015-03-27 23:12:10"></a>Password set for user ‘root@localhost’ at 2015-03-27 23:12:10</h1><p>:Jj+FTiqvyrF<br>[root@bright ~]# cd /usr/local/mysql/bin/<br>[root@bright bin]# ./mysqladmin -u root -h localhost password ‘123456’ -p<br>Enter password: #此行输入.mysql_secret里第二行内容</p>
-<p>mysqladmin: [Warning] Using a password on the command line interface can be insecure.<br>Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.<br>官方的方式，笔者无论是否使用–skip-grant-tables启动mysql都测试失败，亲们可以测试：</p>
-<p>shell&gt;mysql -uroot -p’password’ #password即.mysql_secret里的密码<br>mysql&gt;SET PASSWORD = PASSWORD(‘newpasswd’);</p>
-<p>旧版本，安装后ROOT无密码，按如下操作：</p>
-<p>方法一：</p>
-<p>shell&gt;service mysqld stop #停止mysql服务<br>shell&gt;mysqld_safe –skip-grant-tables &amp; #以不启用grant-tables模式启动mysql<br>shell&gt;mysql -uroot -p #输入命令回车进入，出现输入密码提示直接回车。<br>mysql&gt;use mysql;<br>mysql&gt;update user set password=PASSWORD(“123456”)where user=”root”; #更改密码为 newpassord<br>mysql&gt;flush privileges; #更新权限<br>mysql&gt;quit #退出<br>方法二：</p>
-<p>shell&gt;service mysqld stop #停止mysql服务<br>shell&gt;mysqld_safe –skip-grant-tables &amp; #以不启用grant-tables模式启动mysql<br>shell&gt;mysql -uroot -p #输入命令回车进入，出现输入密码提示直接回车。<br>mysql &gt; set password for root@localhost = password(‘mysqlroot’);<br>方法三：</p>
-<p>shell&gt;/path/mysqladmin -u UserName -h Host password ‘new_password’ -p</p>
+
+mysql&gt; alter user &apos;root&apos;@&apos;localhost&apos; identified by &apos;123&apos;;
+</code></pre><p>这样也可以：</p>
+<pre><code>mysql&gt; set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;123&apos;);
+</code></pre><p>官方文档称自mysql_5.6后，首次启动会在/root/目录下产生.mysql_secret密码文件。</p>
+<h4 id="Centos-root密码重置"><a href="#Centos-root密码重置" class="headerlink" title="Centos root密码重置"></a>Centos root密码重置</h4><p>这个技能据说许多公司都当作面试题，可见这事有多常见。</p>
+<p>首先确定你拥有这台机器的所有权，能够重启。<br>1.Centos6 Booting时5s内按下任意键<br>2.Centos6 GRUB 画面时按e键，Centos7 GRUB2(由init初始化换成了systemd)启动时也按e键<br>3.Centos6 此时出现的新菜单里选Kernel/vmlinuz-2.xxx,再按下e键,在rlgb quiet行后加“空格”并键入”single”，或者直接输入数字的“1”并敲下Enter。<br>  Centos7 出现编辑selected item,在kernel /vmlinuz-3.xxx 的行尾添加 init=/bin/sh<br>4.Centos6 此时按b(boot)键,进入单用户模式，随后就可以在sh-3.2#下passwd root 修改密码，改完reboot就ok。<br>Centos7 按Ctrl+x启动到shell单用户模式。<br>5.Centos7 需要挂载根分区为可读写模式</p>
+<pre><code>mount -o remount,rw
+passwd
+</code></pre><p>ps：如果开启selinux，根分区须有autorelabel文件，没有建之 touch /.autorelabel<br>全路径命令重启  exec /sbin/init  or exec /sbin/reboot</p>
 
       
     </div>
@@ -371,7 +377,7 @@ update mysql.user set authentication_string=password(&apos;123qwe&apos;) where u
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/05/23/Mysql-root-密码忘记如何恢复？/"
-           data-title="Mysql root 密码忘记如何恢复？" data-url="http://b-gg.com/2016/05/23/Mysql-root-密码忘记如何恢复？/">
+           data-title="Centos Mysql root 密码忘记如何恢复？" data-url="http://b-gg.com/2016/05/23/Mysql-root-密码忘记如何恢复？/">
       </div>
     
   </div>
@@ -455,7 +461,7 @@ update mysql.user set authentication_string=password(&apos;123qwe&apos;) where u
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？"><span class="nav-number">1.</span> <span class="nav-text">Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Password-set-for-user-‘root-localhost’-at-2015-03-27-23-12-10"><span class="nav-number"></span> <span class="nav-text">Password set for user ‘root@localhost’ at 2015-03-27 23:12:10</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql-用户密码丢失，如何找回？或者清空？或者重置修改？"><span class="nav-number">1.</span> <span class="nav-text">Mysql 用户密码丢失，如何找回？或者清空？或者重置修改？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Centos-root密码重置"><span class="nav-number">2.</span> <span class="nav-text">Centos root密码重置</span></a></li></ol></div>
             
           </div>
         </section>
